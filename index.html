@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNNIKRISHNAN | CINEMATIC GAMING PROFILE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL & RGB BORDERS ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050816;
+overflow-x:hidden;
+color:white;
+cursor:none;
+}
+
+/* RGB VIEWPORT BORDER EFFECT */
+body::after {
+content: '';
+position: fixed;
+inset: 0;
+border: 10px solid transparent;
+border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff, #ff0000) 1;
+z-index: 999998;
+pointer-events: none;
+animation: rotateRGB 6s linear infinite;
+}
+
+@keyframes rotateRGB {
+0% { filter: hue-rotate(0deg); }
+100% { filter: hue-rotate(360deg); }
+}
+
+/* ================= CINEMATIC OVERLAY ================= */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(0,255,255,0.15), transparent 25%),
+radial-gradient(circle at bottom right, rgba(255,0,200,0.15), transparent 25%);
+z-index:-30;
+animation:bgMove 10s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove{
+
+0%{
+transform:scale(1);
+}
+
+100%{
+transform:scale(1.1);
+}
+
+}
+
+/* ================= VIDEO BACKGROUND ================= */
+
+#bgvideo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-20;
+opacity:0.25;
+filter:
+brightness(0.35)
+contrast(1.3)
+saturate(1.5)
+blur(1px);
+animation:videoZoom 20s infinite alternate ease-in-out;
+}
+
+@keyframes videoZoom{
+
+0%{
+transform:scale(1);
+}
+
+100%{
+transform:scale(1.08);
+}
+
+}
+
+/* ================= CINEMATIC FLASH EFFECT (LIGHTNING) ================= */
+
+.flash{
+position:fixed;
+inset:0;
+background:white;
+opacity:0;
+pointer-events:none;
+z-index:999;
+}
+
+.flash.lightning-active {
+animation: lightningStrike 6s infinite;
+}
+
+@keyframes lightningStrike {
+0%, 92%, 94%, 98%, 100% { opacity: 0; }
+93% { opacity: 0.55; background: #fff; }
+95% { opacity: 0.15; }
+97% { opacity: 0.75; background: #e2f3ff; }
+}
+
+/* ================= MULTIMEDIA ENGINE CANVASES ================= */
+
+#rainCanvas, #fireCanvas {
+position: fixed;
+inset: 0;
+width: 100vw;
+height: 100vh;
+pointer-events: none;
+display: none;
+}
+
+#rainCanvas { z-index: -3; }
+#fireCanvas { z-index: -2; mix-blend-mode: screen; }
+
+/* ================= LOADER ================= */
+
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#020617;
+z-index:999999;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:30px;
+}
+
+#loader h1{
+font-size:42px;
+font-family:'Orbitron',sans-serif;
+color:cyan;
+text-shadow:0 0 25px cyan;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.05);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+.loading-bar{
+width:320px;
+height:10px;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+}
+
+.loading-fill{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,cyan,magenta);
+animation:load 3s forwards;
+}
+
+@keyframes load{
+to{
+width:100%;
+}
+}
+
+/* ================= GRID ================= */
+
+.grid{
+position:fixed;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+background-size:50px 50px;
+z-index:-5;
+animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+
+from{
+transform:translateY(0);
+}
+
+to{
+transform:translateY(50px);
+}
+
+}
+
+/* ================= CUSTOM CURSOR ================= */
+
+.cursor{
+position:fixed;
+width:22px;
+height:22px;
+border-radius:50%;
+background:cyan;
+pointer-events:none;
+z-index:999999;
+box-shadow:0 0 25px cyan;
+mix-blend-mode:screen;
+transition:0.05s linear;
+}
+
+/* ================= PARTICLES ================= */
+
+.particles span{
+position:absolute;
+bottom:-100px;
+width:12px;
+height:12px;
+border-radius:50%;
+animation:float 15s linear infinite;
+}
+
+.particles span:nth-child(odd){
+background:cyan;
+box-shadow:0 0 20px cyan;
+}
+
+.particles span:nth-child(even){
+background:magenta;
+box-shadow:0 0 20px magenta;
+}
+
+.particles span:nth-child(1){left:10%;animation-duration:12s;}
+.particles span:nth-child(2){left:20%;animation-duration:16s;}
+.particles span:nth-child(3){left:35%;animation-duration:10s;}
+.particles span:nth-child(4){left:50%;animation-duration:18s;}
+.particles span:nth-child(5){left:65%;animation-duration:14s;}
+.particles span:nth-child(6){left:80%;animation-duration:20s;}
+.particles span:nth-child(7){left:90%;animation-duration:13s;}
+
+@keyframes float{
+
+0%{
+transform:translateY(0) scale(0);
+opacity:0;
+}
+
+100%{
+transform:translateY(-120vh) scale(1.2);
+opacity:0;
+}
+
+}
+
+/* ================= FLOATING ICONS ================= */
+
+.floating-icons{
+position:fixed;
+top:20%;
+left:3%;
+font-size:40px;
+animation:floatIcons 6s infinite alternate;
+z-index:-1;
+}
+
+@keyframes floatIcons{
+
+from{
+transform:translateY(0px);
+}
+
+to{
+transform:translateY(30px);
+}
+
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+position:fixed;
+width:100%;
+top:0;
+left:0;
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:28px;
+color:cyan;
+text-shadow:0 0 15px cyan;
+animation:logoGlow 2s infinite alternate;
+}
+
+@keyframes logoGlow{
+
+from{
+text-shadow:0 0 10px cyan;
+}
+
+to{
+text-shadow:0 0 25px magenta;
+}
+
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.4s;
+}
+
+nav ul li a:hover{
+color:cyan;
+text-shadow:0 0 12px cyan;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:120px 20px;
+opacity:0;
+transform:translateY(100px);
+transition:1s;
+}
+
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ================= HERO ================= */
+
+.hero h1{
+font-size:95px;
+font-family:'Orbitron',sans-serif;
+animation:glitch 1s infinite;
+}
+
+@keyframes glitch{
+
+0%{
+text-shadow:2px 2px cyan;
+}
+
+50%{
+text-shadow:-2px -2px magenta;
+}
+
+100%{
+text-shadow:2px 2px cyan;
+}
+
+}
+
+.typing{
+margin-top:20px;
+font-size:28px;
+color:#ddd;
+}
+
+.hero p{
+margin-top:25px;
+max-width:950px;
+font-size:20px;
+line-height:2;
+color:#bbb;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:35px;
+margin-top:60px;
+}
+
+.card{
+width:300px;
+padding:35px;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+position:relative;
+overflow:hidden;
+transition:0.5s;
+border:2px solid transparent;
+animation:borderGlow 5s linear infinite;
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:-120%;
+left:-120%;
+width:250%;
+height:250%;
+background:linear-gradient(
+45deg,
+transparent,
+rgba(0,255,255,0.2),
+transparent
+);
+transform:rotate(25deg);
+transition:0.8s;
+}
+
+.card:hover::before{
+top:100%;
+left:100%;
+}
+
+@keyframes borderGlow{
+
+0%{
+border-color:cyan;
+}
+
+50%{
+border-color:magenta;
+}
+
+100%{
+border-color:cyan;
+}
+
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.05);
+box-shadow:
+0 0 30px cyan,
+0 0 60px rgba(255,0,200,0.3);
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:18px;
+color:cyan;
+font-family:'Orbitron',sans-serif;
+}
+
+.card p{
+color:#ddd;
+line-height:1.8;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-box{
+margin-top:50px;
+width:90%;
+max-width:850px;
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 30px rgba(0,255,255,0.2);
+}
+
+.contact-info{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+text-align:left;
+}
+
+.contact-item{
+padding:20px;
+border-radius:18px;
+background:rgba(255,255,255,0.04);
+transition:0.4s;
+}
+
+.contact-item:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+text-align:center;
+padding:30px;
+background:rgba(0,0,0,0.4);
+border-top:1px solid rgba(255,255,255,0.1);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:55px;
+}
+
+.typing{
+font-size:20px;
+}
+
+.contact-info{
+grid-template-columns:1fr;
+}
+
+nav{
+padding:20px;
+}
+
+nav ul{
+gap:15px;
+}
+
+.card{
+width:90%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLASH EFFECT -->
+<div class="flash"></div>
+
+<!-- SYSTEM ENGINE INTERACTIVE MULTIMEDIA -->
+<canvas id="rainCanvas"></canvas>
+<canvas id="fireCanvas"></canvas>
+
+<!-- LOADER -->
+
+<div id="loader">
+
+<h1>INITIALIZING SYSTEM...</h1>
+
+<div class="loading-bar">
+<div class="loading-fill"></div>
+</div>
+
+</div>
+
+<!-- VIDEO BACKGROUND -->
+
+<video autoplay muted loop playsinline id="bgvideo">
+
+<source src="gaming.mp4" type="video/mp4">
+
+</video>
+
+<!-- CUSTOM CURSOR -->
+
+<div class="cursor"></div>
+
+<!-- FLOATING ICONS -->
+
+<div class="floating-icons">
+🎮 ⚽ 🔥 🎧 🕹️
+</div>
+
+<!-- GRID -->
+
+<div class="grid"></div>
+
+<!-- PARTICLES -->
+
+<div class="particles">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<!-- MUSIC -->
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">UNNIKRISHNAN</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#stats">Stats</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero show" id="home">
+
+<h1>UNNIKRISHNAN</h1>
+
+<h2 class="typing"></h2>
+
+<p>
+Greetings to everyone who visited this profile.
+Welcome to my futuristic gaming world filled with cinematic VFX,
+hyper animations, glowing neon effects and smooth transitions.
+I enjoy gaming, soccer and swimming while always trying to improve
+myself as a competitive player, good learner and someone who studies
+well and plays well.
+Anyone can game with me on PS5 using my gaming ID below.
+</p>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h1 style="font-size:60px;font-family:'Orbitron',sans-serif;">
+ABOUT ME
+</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Name</h3>
+<p>My name is Unnikrishnan.</p>
+</div>
+
+<div class="card">
+<h3>Location</h3>
+<p>From Kerala, India.</p>
+</div>
+
+<div class="card">
+<h3>Greetings</h3>
+<p>
+Greetings to all who visited this profile.
+Thanks for visiting my gaming portfolio.
+</p>
+</div>
+
+<div class="card">
+<h3>Competitive</h3>
+<p>
+Competitive gamer with a passion for learning,
+improving skills and achieving new goals.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h1 style="font-size:60px;font-family:'Orbitron',sans-serif;">
+SKILLS
+</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>🎮 Gaming</h3>
+<p>Competitive PS5 gamer and multiplayer enthusiast.</p>
+</div>
+
+<div class="card">
+<h3>⚽ Soccer</h3>
+<p>Love teamwork, speed and energetic soccer matches.</p>
+</div>
+
+<div class="card">
+<h3>🏊 Swimming</h3>
+<p>Focused and disciplined swimmer with determination.</p>
+</div>
+
+<div class="card">
+<h3>📚 Learning</h3>
+<p>Good learner who studies well and improves quickly.</p>
+</div>
+
+<div class="card">
+<h3>🔥 Personality</h3>
+<p>Competitive, active, hardworking and balanced.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section id="stats">
+
+<h1 style="font-size:60px;font-family:'Orbitron',sans-serif;">
+GAMING STATS
+</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Matches</h3>
+<p>400+</p>
+</div>
+
+<div class="card">
+<h3>Win Rate</h3>
+<p>92%</p>
+</div>
+
+<div class="card">
+<h3>Favorite Console</h3>
+<p>PS5</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="contact-box">
+
+<h1 style="font-size:50px;font-family:'Orbitron',sans-serif;color:cyan;">
+CONNECT WITH ME
+</h1>
+
+<div class="contact-info">
+
+<div class="contact-item">
+<h3>📞 Contact Number</h3>
+<p>8547904604</p>
+</div>
+
+<div class="contact-item">
+<h3>📧 Gmail</h3>
+<p>maxup098@gmail.com</p>
+</div>
+
+<div class="contact-item">
+<h3>👾 Discord</h3>
+<p>maxup</p>
+</div>
+
+<div class="contact-item">
+<h3>📸 Instagram</h3>
+<p>@ko_instinct</p>
+</div>
+
+<div class="contact-item">
+<h3>🎮 PS5 ID</h3>
+<p>Mysterydude37</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 UNNIKRISHNAN | CINEMATIC GAMING PROFILE</p>
+</footer>
+
+<script>
+
+/* LOADER & AUTOSTART ENGINE EFFECTS */
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+
+// Trigger atmospheric engine systems automatically when layout launches
+rainActive = true;
+lightningActive = true;
+fireActive = true;
+
+rainCanvas.style.display = "block";
+fireCanvas.style.display = "block";
+flashElement.classList.add("lightning-active");
+initRain();
+
+},3000);
+
+});
+
+/* CUSTOM CURSOR */
+
+const cursor=document.querySelector(".cursor");
+
+document.addEventListener("mousemove",(e)=>{
+
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+
+});
+
+/* TYPING EFFECT */
+
+const text="GAMER | COMPETITIVE PLAYER | GOOD LEARNER | SOCCER LOVER";
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+document.querySelector(".typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,80);
+}
+
+}
+
+typing();
+
+/* SCROLL ANIMATION */
+
+const sections=document.querySelectorAll("section");
+
+window.addEventListener("scroll",()=>{
+
+sections.forEach(sec=>{
+
+const top=sec.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+sec.classList.add("show");
+}
+
+});
+
+});
+
+/* ================= MULTIMEDIA ENVIRONMENT ENGINES ================= */
+
+const rainCanvas = document.getElementById("rainCanvas");
+const rainCtx = rainCanvas.getContext("2d");
+const fireCanvas = document.getElementById("fireCanvas");
+const fireCtx = fireCanvas.getContext("2d");
+const flashElement = document.querySelector(".flash");
+
+let rainActive = false;
+let lightningActive = false;
+let fireActive = false;
+let rainDrops = [];
+let fireParticles = [];
+
+function resizeCanvases() {
+    rainCanvas.width = window.innerWidth;
+    rainCanvas.height = window.innerHeight;
+    fireCanvas.width = window.innerWidth;
+    fireCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvases);
+resizeCanvases();
+
+// --- CANVAS RAIN GENERATION ---
+function initRain() {
+    if(rainDrops.length > 0) return;
+    for (let i = 0; i < 140; i++) {
+        rainDrops.push({
+            x: Math.random() * rainCanvas.width,
+            y: Math.random() * rainCanvas.height,
+            length: Math.random() * 22 + 15,
+            speed: Math.random() * 11 + 11,
+        });
+    }
+}
+
+function drawRain() {
+    rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+    if (!rainActive) return;
+
+    rainCtx.strokeStyle = "rgba(160, 220, 255, 0.45)";
+    rainCtx.lineWidth = 1.2;
+
+    for (let drop of rainDrops) {
+        rainCtx.beginPath();
+        rainCtx.moveTo(drop.x, drop.y);
+        rainCtx.lineTo(drop.x + 1.5, drop.y + drop.length);
+        rainCtx.stroke();
+
+        drop.y += drop.speed;
+        drop.x += 0.5;
+
+        if (drop.y > rainCanvas.height) {
+            drop.y = -drop.length;
+            drop.x = Math.random() * rainCanvas.width;
+        }
+    }
+}
+
+// --- CANVAS FLAME GENERATION ---
+function createFireParticle() {
+    if (fireParticles.length < 160) {
+        fireParticles.push({
+            x: Math.random() * fireCanvas.width,
+            y: fireCanvas.height + Math.random() * 15,
+            radius: Math.random() * 14 + 4,
+            speedY: Math.random() * 3.5 + 2,
+            speedX: (Math.random() - 0.5) * 2.5,
+            alpha: 1,
+            color: Math.random() > 0.35 ? 'rgba(255, 65, 0, ' : 'rgba(255, 155, 0, ' 
+        });
+    }
+}
+
+function drawFire() {
+    fireCtx.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
+    if (!fireActive && fireParticles.length === 0) return;
+
+    if (fireActive) {
+        for (let i = 0; i < 5; i++) createFireParticle();
+    }
+
+    for (let i = fireParticles.length - 1; i >= 0; i--) {
+        let p = fireParticles[i];
+        fireCtx.beginPath();
+        fireCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        fireCtx.fillStyle = p.color + p.alpha + ')';
+        fireCtx.shadowBlur = 15;
+        fireCtx.shadowColor = "rgba(255, 50, 0, 0.8)";
+        fireCtx.fill();
+
+        p.y -= p.speedY;
+        p.x += p.speedX;
+        p.alpha -= 0.014;
+        if(p.radius > 0.3) p.radius -= 0.08;
+
+        if (p.alpha <= 0 || p.radius <= 0) {
+            fireParticles.splice(i, 1);
+        }
+    }
+    fireCtx.shadowBlur = 0; 
+}
+
+// Rendering Core Execution
+function renderLoop() {
+    drawRain();
+    drawFire();
+    requestAnimationFrame(renderLoop);
+}
+renderLoop();
+
+</script>
+
+</body>
+</html>
